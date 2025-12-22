@@ -1,5 +1,21 @@
 # Planner / Task Manager Ledger
 
+## 2025-12-22T15:57:05-08:00 — Handover purpose docs + README prominence
+- Summary: Ensure human-facing docs explain the purpose of the handover document (context reset, especially for small LLM windows) and surface it prominently in README.
+- Details:
+  - Pre-task `todo-inbox.md` sweep: no items to move (template text only).
+  - Clarification Gate: request is clear; no additional questions.
+  - Reasoning Skills pipeline (pre-planner) logs:
+    - {"event_type":"reasoning","skill_name":"bind_spec_id","order":1,"guarantees":["spec_id_context: none (governance doc update)"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"enforce_single_concept","order":2,"guarantees":["concept: framework-governance-docs"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"forbid_cross_concept_reasoning","order":3,"guarantees":["no_cross_concept_dependencies"],"violations":[],"abort_reason":null}
+  - Skill search: available Skills list has no documentation-edit helper; proceeding without a bound Skill (governance/doc task).
+  - Scope: review README and human docs for handover purpose; add a prominent README explanation (context reset for small LLM windows) and update human-readable docs if needed; run snapshot + log updates.
+  - Snapshot/logging: updated README with a handover section, added handover purpose to `docs/humans/workflow-guide.md`, created `ai_workflow_revisions/rev_002_current` via `scripts/create-workflow-revision.sh`, updated `completed.md`/`CHANGELOG.md`/`handover.md`, and confirmed post-task `todo-inbox.md` sweep (no items).
+- Related Spec / Skill: n/a (no applicable Skill)
+- Pending Actions: none
+- Status: completed
+
 ## 2025-12-22T15:19:54-08:00 — README change request confirmation
 - Summary: Add a note in README’s snapshot section that users can ask the framework to update itself to fit the project; confirmed active repo.
 - Details:

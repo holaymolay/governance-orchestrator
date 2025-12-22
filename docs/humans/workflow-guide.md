@@ -5,7 +5,7 @@ This document distills the Context-Engineering Framework for Coding Agents into 
 ## 1. Guiding Principles
 - **Spec-first:** Every task is anchored to an approved spec (or equivalent source of truth) before implementation begins.
 - **Single responsibility:** Each run focuses on one contained deliverable; handoffs and archives maintain continuity between runs.
-- **Observable state:** Todos, handovers, and context ledgers capture the plan, execution notes, and outcomes so reviewers can audit after the fact.
+- **Observable state:** Todos, handovers, and context ledgers capture the plan, execution notes, and outcomes so reviewers can audit after the fact. `handover.md` is the human-readable state transfer file; ask the agent to refresh it to reset the context window (especially when using models with smaller context limits).
 - **Least necessary context:** Agents only keep the state they actively need. Everything else is pruned or archived with human approval.
 - **AI-operated:** Humans provide tasks and decisions via chat or `todo-inbox.md`; the agent runs scripts and updates AI-managed files.
 

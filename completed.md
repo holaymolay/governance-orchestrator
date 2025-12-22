@@ -2,6 +2,8 @@
 
 **AI-managed file — humans should not edit this directly.** The agent records finished work here.
 
+- [x] 2025-12-22: Documented the handover purpose (context reset for small LLM windows) prominently in README and workflow guide; captured local snapshot `rev_002_current`. Skill: none. (ledger: 2025-12-22T15:57:05-08:00 — Handover purpose docs + README prominence)
+
 - [x] 2025-12-22: Added note to README snapshot section that users can ask the agent to update the framework to fit the project; captured local snapshot `rev_001_current`. Skill: none. (ledger: 2025-12-22T15:19:54-08:00 — README change request confirmation)
 
 - [x] 2025-12-22: Updated quick-start prompts to tell the LLM to clone `holaymolay/context-engineering-framework` if missing and work from repo root; captured local snapshot `rev_040_current`. Skill: none. (ledger: 2025-12-22T14:28:02-08:00 — Quick-start clone instructions)

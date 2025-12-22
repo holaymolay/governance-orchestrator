@@ -14,6 +14,11 @@ If you are a human reader, start with `HUMAN_START_HERE.md`.
 - The agent runs framework scripts and updates AI-managed files (`todo.md`, `backlog.md`, `completed.md`, `handover.md`, `CHANGELOG.md`).
 - Humans should not manually edit AI-managed files or run framework scripts.
 
+## Handover document (context reset)
+- `handover.md` is the living state transfer file: it records current focus, recent progress, and next steps so anyone (or any model) can resume quickly.
+- Use it to reset the context window—especially with smaller-context LLMs—by asking the agent to refresh/regenerate `handover.md` before starting new work.
+- The agent owns updates; humans should read it for continuity but avoid editing it directly.
+
 ## Quick start prompt
 Copy/paste this into any agentic frontend (Codex, Gemini, Claude/Anthropic, Grok, etc.):
 
