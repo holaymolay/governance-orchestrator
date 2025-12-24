@@ -55,6 +55,106 @@ Follow-up (if any):
 ## Audit Entries
 - (Add newest entries at the top.)
 
+Date: 2025-12-24
+Change implemented: Added quarterly enforcement audit workflow with a temp-clone regression harness and artifact output.
+Outcome (success/failure/mixed): success
+Speed result (time-to-working result): Not yet measured (no commit timestamp captured).
+Accuracy result (first-pass success or fix-loop count): No fix loops observed for this change.
+Notes (what worked / what failed): Audit harness simulates violations without mutating the real repo and records results as artifacts.
+Follow-up (if any): Confirm quarterly cron execution on the default branch.
+
+Date: 2025-12-24
+Proposal: Add a self-auditing CI job that simulates enforcement violations quarterly and reports outcomes via artifacts.
+Hypothesis (speed/accuracy impact): Periodic enforcement regression tests prevent silent drift and improve long-term accuracy.
+Baseline (current speed + accuracy): Speed median 4.4 minutes; accuracy 0 fix-loops, 100% first-pass (n=5).
+Expected improvement: Earlier detection of enforcement regressions without manual audits.
+Pass/Fail criteria: Audit runner exists, runs in temp clone, fails on unexpected passes, and uploads an audit artifact.
+Confidence (low/medium/high): medium
+Improvement Gate:
+- Q: Does this ensure that the suggested changes will improve and enhance the existing ai-agents-workflow and NOT detract and diminish its effectiveness and quality?
+- A: Yes, it will improve the workflow without weakening it.
+Risks + rollback plan: If the audit job becomes flaky, disable the workflow and retain the runner script for manual runs.
+
+Date: 2025-12-24
+Change implemented: Added Fast Mode scope enforcement + auto-expiry checks, updated run receipt metadata fields, and documented scope requirements in execution profiles.
+Outcome (success/failure/mixed): success
+Speed result (time-to-working result): Not yet measured (no commit timestamp captured).
+Accuracy result (first-pass success or fix-loop count): No fix loops observed for this change.
+Notes (what worked / what failed): Fast Mode now requires explicit scope and ledger/handover logging; run receipts capture execution profile metadata.
+Follow-up (if any): Confirm Fast Mode scope checks behave correctly for future tasks.
+
+Date: 2025-12-24
+Proposal: Formalize Fast/Safe profiles with explicit scope enforcement, auto-expiry guards, and run receipt metadata for mode visibility.
+Hypothesis (speed/accuracy impact): Explicit scope + auto-expiry prevents lingering Fast Mode while preserving speed gains, improving audit accuracy.
+Baseline (current speed + accuracy): Speed median 4.4 minutes; accuracy 0 fix-loops, 100% first-pass (n=5).
+Expected improvement: Fewer accidental Fast Mode carryovers and clearer mode visibility in receipts and logs.
+Pass/Fail criteria: Fast Mode requires FAST_MODE_SCOPE; scope logged in handover + ledger; scope enforced in todo; run receipts include profile metadata.
+Confidence (low/medium/high): medium
+Improvement Gate:
+- Q: Does this ensure that the suggested changes will improve and enhance the existing ai-agents-workflow and NOT detract and diminish its effectiveness and quality?
+- A: Yes, it will improve the workflow without weakening it.
+Risks + rollback plan: If scope enforcement proves too brittle, revert the added Fast Mode checks and keep SAFE-only defaults.
+
+Date: 2025-12-24
+Change implemented: Aligned run receipt schema fields, added append-outcome helper, updated AGENTS run receipt note, and refined CI diff detection for invariants.
+Outcome (success/failure/mixed): success
+Speed result (time-to-working result): Not yet measured (no commit timestamp captured).
+Accuracy result (first-pass success or fix-loop count): No fix loops observed for this change.
+Notes (what worked / what failed): Run receipt tooling now matches Phase-2 field names and CI can detect PR diffs for DoD checks.
+Follow-up (if any): Verify SAFE runs append final outcomes and fields consistently.
+
+Date: 2025-12-24
+Proposal: Align run receipt schema/fields with Phase-2 requirements, add append-outcome helper, and strengthen CI diff detection for DoD checks.
+Hypothesis (speed/accuracy impact): Standardized receipts and CI diff enforcement reduce ambiguity and improve audit accuracy with minimal speed impact.
+Baseline (current speed + accuracy): Speed median 4.4 minutes; accuracy 0 fix-loops, 100% first-pass (n=5).
+Expected improvement: Clearer receipts and reliable DoD enforcement on PR diffs.
+Pass/Fail criteria: Schema fields match Phase-2 requirements; helper scripts exist for create + append; AGENTS updated; CI diff detection handles PR base refs.
+Confidence (low/medium/high): medium
+Improvement Gate:
+- Q: Does this ensure that the suggested changes will improve and enhance the existing ai-agents-workflow and NOT detract and diminish its effectiveness and quality?
+- A: Yes, it will improve the workflow without weakening it.
+Risks + rollback plan: If receipt fields cause friction, revert schema/script changes and keep the prior run record format.
+
+Date: 2025-12-24
+Change implemented: Added explicit reminders in Repository Hygiene to push to GitHub regularly and update documentation when framework changes land.
+Outcome (success/failure/mixed): success
+Speed result (time-to-working result): Not yet measured (no commit timestamp captured).
+Accuracy result (first-pass success or fix-loop count): No fix loops observed for this change.
+Notes (what worked / what failed): Reminders are now surfaced in the always-loaded workflow guidance.
+Follow-up (if any): Confirm reminders are sufficient without adding noise.
+
+Date: 2025-12-24
+Proposal: Add always-visible reminders to push to GitHub regularly and update documentation when framework changes land.
+Hypothesis (speed/accuracy impact): Explicit reminders reduce missed pushes and documentation drift, improving workflow reliability with minimal speed impact.
+Baseline (current speed + accuracy): Speed median 4.4 minutes; accuracy 0 fix-loops, 100% first-pass (n=5).
+Expected improvement: Fewer incomplete task cycles due to unpushed commits and fewer doc-update gaps after changes.
+Pass/Fail criteria: Reminders added to workflow docs; snapshot captured; logs updated.
+Confidence (low/medium/high): medium
+Improvement Gate:
+- Q: Does this ensure that the suggested changes will improve and enhance the existing ai-agents-workflow and NOT detract and diminish its effectiveness and quality?
+- A: Yes, it will improve the workflow without weakening it.
+Risks + rollback plan: If reminders add noise without benefit, remove the reminder lines while keeping existing hygiene rules.
+
+Date: 2025-12-24
+Proposal: Operationalize enforcement scripts (invariants, git preflight), add run record receipts, and define Safe/Fast execution profiles.
+Hypothesis (speed/accuracy impact): Automated invariants and run records reduce manual oversight and prevent rule drift, improving first-pass accuracy with minimal speed impact.
+Baseline (current speed + accuracy): Speed median 4.4 minutes; accuracy 0 fix-loops, 100% first-pass (n=5).
+Expected improvement: Fewer governance regressions and clearer execution evidence.
+Pass/Fail criteria: Scripts exit non-zero on violation; run record schema + helper exist; profiles documented and enforced; AGENTS updated; preflight checks available.
+Confidence (low/medium/high): medium
+Improvement Gate:
+- Q: Does this ensure that the suggested changes will improve and enhance the existing ai-agents-workflow and NOT detract and diminish its effectiveness and quality?
+- A: Yes, it will improve the workflow without weakening it.
+Risks + rollback plan: If enforcement blocks routine work, revert scripts and profile rules while keeping documentation notes for future iteration.
+
+Date: 2025-12-24
+Change implemented: Added invariant enforcement scripts, run record schema + helper, execution profile doc, preflight checks, and CI workflow; updated AGENTS with run record/profile rules.
+Outcome (success/failure/mixed): success
+Speed result (time-to-working result): Not yet measured (no commit timestamp captured).
+Accuracy result (first-pass success or fix-loop count): No fix loops observed for this change.
+Notes (what worked / what failed): Enforcement logic is centralized in scripts with explicit failure messages.
+Follow-up (if any): Add run record for this task and validate preflight usage in CI.
+
 Date: 2025-12-22
 Proposal: Propagate the official title "Context-Engineering Framework for Coding Agents" across human entrypoints and guides.
 Hypothesis (speed/accuracy impact): A single, consistent title reduces naming confusion and speeds onboarding.

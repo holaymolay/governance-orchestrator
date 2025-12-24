@@ -29,6 +29,9 @@ Procedural workflows for humans and agents. Each playbook references the authori
 ## Stack Quickstarts
 - **Stack Quickstarts** — Fast guide to select and apply stack profiles (`docs/wiki/playbooks/stack-quickstarts.md`).
 
+## UI Intent Protocol
+- **UI Intent Protocol** — How to emit validated UI intent objects and render via the adapter (`docs/wiki/playbooks/ui-intent-protocol.md`).
+
 ## Create a New Concept
 1. Review `todo-inbox.md`/`todo.md` for the scoped request and confirm a spec exists in `/specs/`.
 2. Copy `/templates/concept-template.yaml` into `concepts/<name>/manifest.yaml` and fill in purpose, handlers, dependencies, and Synchronizations.

@@ -77,5 +77,14 @@ Yes. The framework can be adapted to any structured project work that needs clar
 - `docs/humans/user-guide-cheat-sheet.md` (one-page quickstart)
 - `docs/humans/about.md` (why this framework exists and how it evolved)
 
+## UIP enforcement (schema-aware)
+- Blunt scan: grep-based detection of JSX/HTML/Tailwind leakage outside adapter/renderer allowlists.
+- Blocking checks: UIP-0.1 schema validation, event→synchronization validation, and renderer certification all fail the build on non-compliance.
+- Non-blocking checks: UIP-0.2 shadow validation reports potential failures without failing CI.
+- Shadow validation: draft schemas live alongside UIP-0.1 and produce a summary report in CI.
+- Evolve UIP safely by running shadow validation first, updating migration docs, then promoting rules to blocking.
+- Add new schemas by updating schema constants, fixtures, and `scripts/check-uip-schemas.py`.
+- Suppress checks only via explicit allowlists in `scripts/check-uip-compliance.sh` and `scripts/check-uip-schemas.py` (see `docs/ui-protocol/enforcement.md`).
+
 ## Framework revision snapshots (local)
 Framework snapshots are stored locally under `ai_workflow_revisions/` and are gitignored by default. Ask the agent to run `scripts/create-workflow-revision.sh` after governance changes. See `docs/workflow-revisions.md` for the required contents and numbering rules. You’re free to adapt the framework to your project—just tell the agent to update itself in whatever way best fits, and it will apply the change and capture the new revision.

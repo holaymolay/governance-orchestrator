@@ -8,3 +8,8 @@ This page summarizes reusable patterns discovered during delivery. It is a navig
 - Prefer stdout-only Skills; avoid filesystem writes unless explicitly required and reviewed.
 
 Authoritative reference: `docs/skills/skill-library-v1.md` (spec: `specs/skill-library-v1.md`).
+
+## UI Intent Protocol
+- Intent schema, adapter contract, and reference renderer live under `concepts/ui-intent-protocol/`.
+- Skill `ui_intent.emit` validates intent emission (`skills/ui-intent-emit/`).
+- PDCA loop for UI refinement is defined in `concepts/ui-intent-protocol/pdca.md`.

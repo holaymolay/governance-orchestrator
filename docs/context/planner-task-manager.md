@@ -1,5 +1,152 @@
 # Planner / Task Manager Ledger
 
+## 2025-12-24T12:27:50-08:00 — UI intent protocol confirmation (Skill + PDCA)
+- Summary: Confirm whether the UI intent system includes a Skill manifest and PDCA loop.
+- Details:
+  - Pre-task `todo-inbox.md` sweep: no items to move (template text only).
+  - Clarification Gate: not triggered (request is clear).
+  - Reasoning Skills pipeline (pre-planner) logs:
+    - {"event_type":"reasoning","skill_name":"bind_spec_id","order":1,"guarantees":["spec_id_context: none (support confirmation)"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"enforce_single_concept","order":2,"guarantees":["concept: ui-intent-protocol"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"forbid_cross_concept_reasoning","order":3,"guarantees":["no_cross_concept_dependencies"],"violations":[],"abort_reason":null}
+  - Skill search: no applicable Skill (support response).
+  - Progress: confirmed Skill manifest at `skills/ui-intent-emit/skill.yaml` and PDCA loop at `concepts/ui-intent-protocol/pdca.md`.
+  - Post-task `todo-inbox.md` sweep: no remaining items to move (template text only).
+- Related Spec / Skill: n/a (support response).
+- Status: completed
+
+## 2025-12-24T12:21:58-08:00 — Script explanation (UIP enforcement checks)
+- Summary: Explain what running the local enforcement scripts does.
+- Details:
+  - Pre-task `todo-inbox.md` sweep: no items to move (template text only).
+  - Clarification Gate: not triggered (request is clear).
+  - Reasoning Skills pipeline (pre-planner) logs:
+    - {"event_type":"reasoning","skill_name":"bind_spec_id","order":1,"guarantees":["spec_id_context: none (script explanation)"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"enforce_single_concept","order":2,"guarantees":["concept: support-response"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"forbid_cross_concept_reasoning","order":3,"guarantees":["no_cross_concept_dependencies"],"violations":[],"abort_reason":null}
+  - Skill search: no applicable Skill (question about scripts).
+  - Progress: summarized `scripts/check-invariants.sh` and `scripts/check-uip-compliance.sh` behavior and outcomes.
+  - Post-task `todo-inbox.md` sweep: no remaining items to move (template text only).
+- Related Spec / Skill: n/a (support response).
+- Status: completed
+
+## 2025-12-24T11:37:16-08:00 — Documentation update (UIP additions)
+- Summary: Update navigation and UIP documentation to reflect recent enforcement additions.
+- Details:
+  - Pre-task `todo-inbox.md` sweep: no items to move (template text only).
+  - Clarification Gate: not triggered (request is clear).
+  - Reasoning Skills pipeline (pre-planner) logs:
+    - {"event_type":"reasoning","skill_name":"bind_spec_id","order":1,"guarantees":["spec_id_context: none (documentation update)"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"enforce_single_concept","order":2,"guarantees":["concept: documentation"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"forbid_cross_concept_reasoning","order":3,"guarantees":["no_cross_concept_dependencies"],"violations":[],"abort_reason":null}
+  - Skill search: no applicable Skill (documentation update).
+  - Progress: updated UIP enforcement docs and renderer compliance notes; added UI protocol links to the wiki index.
+  - Snapshot/logging: captured workflow revision `rev_005_current` via `scripts/create-workflow-revision.sh` after wiki update.
+  - Post-task `todo-inbox.md` sweep: no remaining items to move (template text only).
+- Related Spec / Skill: n/a (documentation update).
+- Pending Actions: update logs (`completed.md`, `CHANGELOG.md`, `handover.md`).
+- Status: completed
+
+## 2025-12-24T11:03:58-08:00 — Workflow reminders (push + documentation)
+- Summary: Add always-visible workflow reminders to push to GitHub regularly and update documentation when framework changes land.
+- Details:
+  - Pre-task `todo-inbox.md` sweep: moved workflow reminders into `todo.md` and cleared them from the inbox.
+  - Clarification Gate: not triggered (request is clear).
+  - Reasoning Skills pipeline (pre-planner) logs:
+    - {"event_type":"reasoning","skill_name":"bind_spec_id","order":1,"guarantees":["spec_id_context: none (workflow governance reminders)"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"enforce_single_concept","order":2,"guarantees":["concept: workflow-governance"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"forbid_cross_concept_reasoning","order":3,"guarantees":["no_cross_concept_dependencies"],"violations":[],"abort_reason":null}
+  - Skill search: no applicable Skill (governance update).
+  - Progress: added explicit push + documentation reminders in `AGENTS.md` Repository Hygiene.
+  - Audit log: recorded proposal and outcome entries in `docs/workflow-audit.md` (Improvement Gate satisfied).
+  - Snapshot/logging: captured workflow revision `rev_004_current` via `scripts/create-workflow-revision.sh`.
+  - Post-task `todo-inbox.md` sweep: no remaining items to move (template text only).
+- Related Spec / Skill: n/a (workflow governance reminders).
+- Pending Actions: update logs (`completed.md`, `CHANGELOG.md`, `handover.md`).
+- Status: completed
+
+## 2025-12-24T10:28:20-08:00 — Prompt Task Execution Queue
+- Summary: Execute the ordered prompt tasks in `todo.md`, deleting prompt files after confirmed completion.
+- Details:
+  - Pre-task `todo-inbox.md` sweep: no items to move (template text only).
+  - Clarification Gate: not triggered (request is clear).
+  - Reasoning Skills pipeline (pre-planner) logs:
+    - {"event_type":"reasoning","skill_name":"bind_spec_id","order":1,"guarantees":["spec_id_context: none (prompt task execution)"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"enforce_single_concept","order":2,"guarantees":["concept: prompt-execution"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"forbid_cross_concept_reasoning","order":3,"guarantees":["no_cross_concept_dependencies"],"violations":[],"abort_reason":null}
+  - Skill search: no applicable Skill for prompt execution.
+  - Scope: execute prompts in order and remove `prompt*.md` files after completion.
+  - Progress: executed `prompt1.md` (UI skill entry add-ons, UI event sync template, Tailwind pattern library plugin) and removed `prompt1.md`.
+  - Progress: executed `prompt2.md` (added UIP-0.1 protocol document) and removed `prompt2.md`.
+  - Progress: executed `prompt_flywheel1.md` (invariant enforcement scripts, run record schema + helper, execution profiles doc, AGENTS update, CI workflow, preflight checks).
+  - Snapshot/logging: captured workflow revision `rev_003_current` via `scripts/create-workflow-revision.sh` after AGENTS update.
+  - Run record: appended `runs/2025-12-24/4ccf43c0-58a6-4c44-bf96-bc8ce0ccc717.jsonl`.
+  - Progress: `prompt_flywheel2_enforcement_layer_audit.md` was empty; removed the file.
+  - Progress: `prompt_enforcement_slowdown_optimization.md` requested reduced enforcement, which conflicted with the already-applied hardening pass; no changes made; removed the file.
+  - Progress: executed `prompt_additional_items1.md` (UIP enforcement scripts + CI hook, migration guide template, renderer compliance checklist, UIEvent schema updates).
+  - Progress: executed `prompt_additional_items2.md` (expanded UIP forbidden-output scan tokens + updated enforcement README); removed the file.
+  - Progress: executed `prompt_additional_items3.md` (added UIP-0.2 strawman doc); removed the file.
+  - Progress: executed `prompt_additional_items4.md` (schema-aware UIP discovery + validation, boundary checks, enforcement/README updates, CI label tweak, payload updates); removed the file.
+  - Progress: executed `prompt_additional_items5.md` (event→sync validation, renderer certification harness + docs, UIP-0.2 shadow schemas + reporting, CI ordering updates, README update, sync examples); removed the file.
+  - Progress: executed `prompt_flywheel_phase2.md` (run receipt schema/field alignment, append-outcome helper, CI diff enforcement tweak, AGENTS note update, workflow audit entry); captured workflow revision `rev_006_current`; removed the file.
+  - Progress: executed `prompt_flywheel_phase3.md` (Fast/Safe scope enforcement, run metadata fields, execution profile doc + invariants update, workflow audit entries); captured workflow revision `rev_007_current`; removed the file.
+  - Progress: executed `prompt_ci_retests.md` (enforcement audit runner, quarterly CI workflow, audit artifacts, gitignore update, workflow audit entries); captured workflow revision `rev_008_current`; removed the file.
+- Related Spec / Skill: n/a (prompt execution queue).
+- Pending Actions: plan execution order, process prompts sequentially, update logs as tasks complete.
+- Status: in progress
+
+## 2025-12-24T10:23:16-08:00 — Todo Inbox Processing (Follow-up)
+- Summary: Process newly added item in `todo-inbox.md` and move it into `todo.md`.
+- Details:
+  - Pre-task `todo-inbox.md` sweep: one item under Next Features & Updates.
+  - Clarification Gate: not triggered (request is clear).
+  - Reasoning Skills pipeline (pre-planner) logs:
+    - {"event_type":"reasoning","skill_name":"bind_spec_id","order":1,"guarantees":["spec_id_context: none (governance housekeeping)"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"enforce_single_concept","order":2,"guarantees":["concept: governance-housekeeping"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"forbid_cross_concept_reasoning","order":3,"guarantees":["no_cross_concept_dependencies"],"violations":[],"abort_reason":null}
+  - Skill search: no applicable Skill; proceeding with governance housekeeping.
+  - Scope: move the new documentation update item into `todo.md` and clear it from `todo-inbox.md`.
+  - Progress: moved the documentation update item into `todo.md` under Next Features & Updates; cleared from `todo-inbox.md`.
+  - Post-task `todo-inbox.md` sweep: no remaining items to move (template text only).
+- Related Spec / Skill: n/a (governance housekeeping).
+- Pending Actions: update logs (`completed.md`, `CHANGELOG.md`, `handover.md`).
+- Status: completed
+
+## 2025-12-24T10:21:35-08:00 — Todo Inbox Processing
+- Summary: Process `todo-inbox.md` and move queued items into `todo.md` per sweep rules.
+- Details:
+  - Pre-task `todo-inbox.md` sweep: items queued under Next Features & Updates for prompt execution.
+  - Clarification Gate: not triggered (request is clear).
+  - Reasoning Skills pipeline (pre-planner) logs:
+    - {"event_type":"reasoning","skill_name":"bind_spec_id","order":1,"guarantees":["spec_id_context: none (governance housekeeping)"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"enforce_single_concept","order":2,"guarantees":["concept: governance-housekeeping"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"forbid_cross_concept_reasoning","order":3,"guarantees":["no_cross_concept_dependencies"],"violations":[],"abort_reason":null}
+  - Skill search: no applicable Skill; proceeding with governance housekeeping.
+  - Scope: move prompt execution items into `todo.md` and clear them from `todo-inbox.md`.
+  - Progress: moved prompt execution items into `todo.md` under Next Features & Updates; cleared entries from `todo-inbox.md`.
+  - Post-task `todo-inbox.md` sweep: no remaining items to move (template text only).
+- Related Spec / Skill: n/a (governance housekeeping).
+- Pending Actions: update logs (`completed.md`, `CHANGELOG.md`, `handover.md`).
+- Status: completed
+
+## 2025-12-24T09:35:09-08:00 — UI Intent Protocol Infrastructure
+- Summary: Design and implement a minimal UI intent protocol, Tailwind adapter, reference renderer, governing Skill, and PDCA loop per spec.
+- Details:
+  - Pre-task `todo-inbox.md` sweep: no items to move (template text only).
+  - Clarification Gate: not triggered (request is clear).
+  - Reasoning Skills pipeline (pre-planner) logs:
+    - {"event_type":"reasoning","skill_name":"bind_spec_id","order":1,"guarantees":["spec_id_context: d520edbb-18e7-4b29-834c-6756329b2c81"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"enforce_single_concept","order":2,"guarantees":["concept: ui-intent-protocol"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"forbid_cross_concept_reasoning","order":3,"guarantees":["no_cross_concept_dependencies"],"violations":[],"abort_reason":null}
+  - Skill search: no existing Skill matches; proceed with “no-skill” justification while adding new Skill `ui_intent.emit`.
+  - Scope: add spec + concept manifest, schema/types, adapter contract + tokens, reference flow, skill manifest/impl, PDCA definition, and wiki summaries.
+  - Progress: implemented UI intent schema + JSON Schema, adapter contract/tokens/patterns, reference flow, Skill package, PDCA doc, and wiki updates.
+  - Post-task `todo-inbox.md` sweep: moved prompt-execution items into `todo.md`.
+  - Validation: ran `skills/ui-intent-emit/tests/test_smoke.sh`.
+- Related Spec / Skill: Spec `d520edbb-18e7-4b29-834c-6756329b2c81` (UI Intent Protocol v1); Skill: none (new Skill ui_intent.emit).
+- Pending Actions: none.
+- Status: completed
+
 ## 2025-12-22T15:57:05-08:00 — Handover purpose docs + README prominence
 - Summary: Ensure human-facing docs explain the purpose of the handover document (context reset, especially for small LLM windows) and surface it prominently in README.
 - Details:

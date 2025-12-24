@@ -3,11 +3,12 @@
 **AI-managed file — humans should not edit this directly.** The agent keeps current state and next steps here.
 
 ## Current Focus
-- Implement AgentFS runtime enforcement per `specs/agentfs-enforcement-layer-v1.md` (Spec ID: `ac7a3716-e70c-42f7-8a77-18c084943f5b`), starting with Phase 1 PDCA gating.
+- No queued feature work; maintain prompt cleanup rule and await new tasks.
 
 ## State Snapshot
-- Governance files exist and todos are clear: `todo-inbox.md` holds only template text; `todo.md`/`backlog.md` have no entries; bugs are empty.
-- Workflow snapshots are stored locally under `ai_workflow_revisions/` (gitignored by default); current baseline `rev_002_current` was captured via `scripts/create-workflow-revision.sh` (see `docs/workflow-revisions.md` for required contents/numbering).
+  - Governance files exist and todos are clear: `todo-inbox.md` holds template text only; `todo.md` now includes prompt execution tasks; `backlog.md` is empty; bugs are empty.
+- UI intent protocol concept is under `concepts/ui-intent-protocol/` with schema, adapter, reference renderer, and PDCA doc; Skill `skills/ui-intent-emit/` added for validated intent emission.
+- Workflow snapshots are stored locally under `ai_workflow_revisions/` (gitignored by default); current baseline `rev_008_current` was captured via `scripts/create-workflow-revision.sh` (see `docs/workflow-revisions.md` for required contents/numbering).
 - Key references: `AGENTS.md`, `docs/agents.md`, `docs/humans/workflow-guide.md`, `docs/context-management.md`, `docs/security.md`, `docs/access-manifest.md`, `docs/skills/skill-library-v1.md`, `specs/skill-library-v1.md`, `scripts/skillctl`, and `skills/README.md`.
 - Upstream metadata catalog for agent selection: `docs/skills/upstream-skillcards.anthropic.json`.
 - `skillctl` setup script creates `.venv-skillctl/` (ignored by git via `.gitignore`).
@@ -16,8 +17,29 @@
 
 ## Active Skills and Recent Changes
 - Skill scaffolding exists under `skills/_template/` and the contract schema is `skills/_schema/skill.schema.json`; implemented Skills: `skills/fs-hash-tree/`, `skills/skillcard-parse/`, and `skills/skillcard-index/`.
+- Added Skill `ui_intent.emit` under `skills/ui-intent-emit/` for UI intent validation (Spec ID: `d520edbb-18e7-4b29-834c-6756329b2c81`).
 
 ## Recent Progress
+- Confirmed the UI intent Skill manifest and PDCA loop locations for the UI intent system. Skill: none. (ledger: 2025-12-24T12:27:50-08:00 — UI intent protocol confirmation (Skill + PDCA)).
+- Explained what `scripts/check-invariants.sh` and `scripts/check-uip-compliance.sh` do for local enforcement validation. Skill: none. (ledger: 2025-12-24T12:21:58-08:00 — Script explanation (UIP enforcement checks)).
+- Executed `prompt_ci_retests.md` (enforcement audit runner, quarterly CI workflow, audit artifacts, gitignore update, workflow audit entries) and captured snapshot `rev_008_current`; removed the prompt. Skill: none. (ledger: 2025-12-24T10:28:20-08:00 — Prompt Task Execution Queue).
+- Executed `prompt_flywheel_phase3.md` (Fast/Safe scope enforcement, run metadata fields, execution profile doc + invariants update, workflow audit entries) and captured snapshot `rev_007_current`; removed the prompt. Skill: none. (ledger: 2025-12-24T10:28:20-08:00 — Prompt Task Execution Queue).
+- Executed `prompt_flywheel_phase2.md` (run receipt schema/field alignment, append-outcome helper, CI diff enforcement tweak, AGENTS note update, workflow audit entry) and captured snapshot `rev_006_current`; removed the prompt. Skill: none. (ledger: 2025-12-24T10:28:20-08:00 — Prompt Task Execution Queue).
+- Updated UIP documentation/navigation (enforcement notes, renderer compliance link, wiki index) and captured workflow snapshot `rev_005_current`. Skill: none. (ledger: 2025-12-24T11:37:16-08:00 — Documentation update (UIP additions)).
+- Executed `prompt_additional_items5.md` (event→sync validation, renderer certification harness + docs, UIP-0.2 shadow schemas + reporting, CI ordering updates, README update, sync examples) and removed it. Skill: none. (ledger: 2025-12-24T10:28:20-08:00 — Prompt Task Execution Queue).
+- Executed `prompt_additional_items4.md` (schema-aware UIP discovery + validation, boundary checks, enforcement/README updates, CI label tweak, payload updates) and removed it. Skill: none. (ledger: 2025-12-24T10:28:20-08:00 — Prompt Task Execution Queue).
+- Added workflow reminders for GitHub pushes + documentation updates, updated the workflow audit log, and captured snapshot `rev_004_current`. Skill: none. (ledger: 2025-12-24T11:03:58-08:00 — Workflow reminders (push + documentation)).
+- Executed `prompt_additional_items3.md` (added `docs/ui-protocol/migrations/UIP-0.2-strawman.md`) and removed it. Skill: none. (ledger: 2025-12-24T10:28:20-08:00 — Prompt Task Execution Queue).
+- Executed `prompt_additional_items2.md` (expanded UIP forbidden-output scan tokens + enforcement README update) and removed it. Skill: none. (ledger: 2025-12-24T10:28:20-08:00 — Prompt Task Execution Queue).
+- Executed `prompt_additional_items1.md` (UIP enforcement scripts + CI hook, migration guide template, renderer compliance checklist, UIEvent schema updates) and removed it. Skill: none. (ledger: 2025-12-24T10:28:20-08:00 — Prompt Task Execution Queue).
+- Executed `prompt_enforcement_slowdown_optimization.md` (no changes; conflicts with existing enforcement hardening) and removed it. Skill: none. (ledger: 2025-12-24T10:28:20-08:00 — Prompt Task Execution Queue).
+- Executed `prompt_flywheel2_enforcement_layer_audit.md` (file was empty) and removed it. Skill: none. (ledger: 2025-12-24T10:28:20-08:00 — Prompt Task Execution Queue).
+- Executed `prompt_flywheel1.md` (invariant enforcement scripts, run record schema + helper, execution profiles doc, AGENTS update, CI workflow, preflight checks), removed `prompt_flywheel1.md`, and captured workflow snapshot `rev_003_current`. Skill: none. (ledger: 2025-12-24T10:28:20-08:00 — Prompt Task Execution Queue).
+- Executed `prompt2.md` (added `docs/ui-protocol/UIP-0.1.md`) and removed `prompt2.md`. Skill: none. (ledger: 2025-12-24T10:28:20-08:00 — Prompt Task Execution Queue).
+- Executed `prompt1.md` (UI skill entry add-ons, UI event sync template, Tailwind pattern library plugin) and removed `prompt1.md`. Skill: none. (ledger: 2025-12-24T10:28:20-08:00 — Prompt Task Execution Queue).
+- Processed `todo-inbox.md` follow-up and moved the new documentation update item into `todo.md`. Skill: none. (ledger: 2025-12-24T10:23:16-08:00 — Todo Inbox Processing (Follow-up)).
+- Processed `todo-inbox.md` and moved prompt execution items into `todo.md`. Skill: none. (ledger: 2025-12-24T10:21:35-08:00 — Todo Inbox Processing).
+- Implemented UI intent protocol infrastructure (schema/types + JSON Schema, Tailwind adapter contract + reference renderer, UI intent Skill package, PDCA loop, wiki summaries). Skill: none (new Skill ui_intent.emit added). (ledger: 2025-12-24T09:35:09-08:00 — UI Intent Protocol Infrastructure).
 - Documented the handover purpose (context reset for small LLM windows) in README and the workflow guide; captured local snapshot `rev_002_current`. Skill: none. (ledger: 2025-12-22T15:57:05-08:00 — Handover purpose docs + README prominence).
 - Added README snapshot section note that users can ask the agent to update the framework to fit the project; captured local snapshot `rev_001_current`. Skill: none. (ledger: 2025-12-22T15:19:54-08:00 — README change request confirmation).
 - Simplified quick-start header to “any agentic frontend (Codex, Gemini, Claude/Anthropic, Grok, etc.)” and captured local snapshot `rev_043_current`. Skill: none. (ledger: 2025-12-22T14:57:37-08:00 — Quick-start header phrasing).
@@ -74,6 +96,7 @@
 - Maintain pre/post-task sweeps of `todo-inbox.md`; keep todos/backlog/completed/handover agent-managed.
 - When modifying workflow/governance docs, create the next local `ai_workflow_revisions/rev_00X_current` snapshot (per `docs/workflow-revisions.md`) and log the revision in `completed.md`, `CHANGELOG.md`, and `handover.md`.
 - Record new work in the planner ledger (`docs/context/planner-task-manager.md`) before coding and close entries with outcomes.
+- If needed, run the UI intent Skill smoke test (`skills/ui-intent-emit/tests/test_smoke.sh`) or `scripts/skillctl validate --all`.
 - Implement AgentFS runtime enforcement per `specs/agentfs-enforcement-layer-v1.md`, starting with Phase 1 PDCA gating.
 
 ## Pending Items

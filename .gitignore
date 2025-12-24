@@ -4,3 +4,4 @@ ai_workflow_revisions/*
 __pycache__/
 *.code-workspace
 .project-dashboard.json
+artifacts/
