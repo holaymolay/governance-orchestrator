@@ -1,34 +1,39 @@
 # Context management rationale
 
-This document explains how the framework minimizes effective LLM context usage by externalizing state, enforcing contracts, and making sessions resumable without re-teaching instructions.
+This document explains, in a falsifiable way, how the framework reduces effective context pressure and makes long-running AI workflows resumable.
 
-## Problem the framework solves
-LLM-only conversations drift and bloat: rules fade, clarifications repeat, and implicit constraints vanish after truncation. Token pressure forces re-derivation and increases correction loops.
+## Context control through externalized state (why it works)
 
-## Architectural shift
-- Memory moves from chat to versioned artifacts (`specs/`, `todo.md`, `handover.md`, `runs/`).
+### Problem statement
+- Drift: conversational reminders decay and rules diverge from intent.
+- Re-derivation: the model re-explains requirements instead of executing them.
+- Token bloat: repeated restatement of constraints consumes budget without adding signal.
+- Implicit rule loss: unpinned agreements vanish when the chat window truncates.
+
+### Architectural shift
+- Memory is externalized into versioned artifacts (`specs/`, `todo.md`, `handover.md`, `runs/`).
 - Narrative context is replaced by symbolic references (spec IDs, Concept manifests, Synchronizations).
-- Control-plane chat is distinct from the state-plane repo; `AGENTS.md` defines the boundary.
+- Control-plane chat is separated from the state-plane repo; `AGENTS.md` defines authority and boundaries.
 
-## Mechanisms that reduce context pressure
-- Spec-first rule in `AGENTS.md` keeps requirements in `specs/` and out of long chats.
-- Concepts + manifests (`concepts/`) anchor domain state; Synchronizations (`synchronizations/`) declare cross-domain coupling explicitly.
-- Governance CI (`.github/workflows/`) and PDCA in `docs/agents.md` enforce schemas, lint, and invariants on every run.
-- Handover + run records (`handover.md`, `runs/`) rehydrate progress without recalling prior messages.
-- README governance (`README_GOVERNANCE.md`, `README_SPEC.yaml`) prevents instruction drift in entry docs.
+### Mechanisms (referential and enforced)
+- `AGENTS.md` forces spec-first execution and bans free-form prompting; specs live in `specs/`.
+- Concepts and manifests (`concepts/`) scope handlers; Synchronization manifests (`synchronizations/`) declare cross-concept dependencies explicitly.
+- PDCA and CI (`docs/agents.md`, `.github/workflows/`) enforce lint, schema, and governance gates on every change.
+- Handover + run records (`handover.md`, `runs/`) rehydrate state without replaying prior chat.
+- README governance (`README_GOVERNANCE.md`, `README_SPEC.yaml`) prevents entrypoint drift.
 
-## Why the model stops “remembering”
-- Required constraints live in files; prompts reference those files instead of replaying chat logs.
-- Rehydration pulls artifacts (specs, manifests, handover) so truncation does not erase rules.
-- Lost chat tokens no longer imply lost constraints because CI and validators block out-of-contract outputs.
+### Why this reduces effective context pressure
+- The model no longer “remembers” rules; it reloads specs, manifests, and ledgers as inputs.
+- Rehydration pulls artifacts (handover, todo, spec IDs) so truncation does not erase constraints.
+- Lost chat tokens do not remove rules because CI and validators reject out-of-contract outputs.
 
-## Practical consequences
-- Longer productive sessions before intervention is needed.
-- Fewer correction loops because constraints are reread, not retaught.
-- Faster restarts: load `handover.md`, `todo.md`, and relevant specs to continue.
-- Lower cognitive load for humans: follow the document map instead of re-typing context.
+### Practical consequences
+- Longer productive sessions with stable constraints.
+- Fewer correction loops because constraints are re-read instead of re-taught.
+- Easier restarts: load `handover.md`, `todo.md`, and relevant specs to continue.
+- Lower cognitive load for humans: follow the documented map instead of restating context.
 
-## Boundaries
+### Non-claims / boundaries
 - Does not increase raw token limits.
-- Requires disciplined upkeep of specs, manifests, and handover entries.
-- CI enforcement must stay enabled; disabling it removes the guarantees described here.
+- Does not guarantee correctness without maintained specs and passing CI.
+- Requires disciplined updates to specs, manifests, and handover artifacts.

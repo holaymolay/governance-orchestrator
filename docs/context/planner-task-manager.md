@@ -1,5 +1,17 @@
 # Planner / Task Manager Ledger
 
+## 2025-12-24T23:46:09-08:00 — Context window benefits documentation
+- Summary: Add a structured documentation section explaining how the framework reduces effective LLM context usage and enables resumable workflows.
+- Details:
+  - Pre-task `todo-inbox.md` sweep: inbox empty.
+  - Clarification Gate: not triggered (request is clear).
+  - Reasoning Skills pipeline (pre-planner) logs:
+    - {"event_type":"reasoning","skill_name":"bind_spec_id","order":1,"guarantees":["spec_id_context: none (context benefits doc)"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"enforce_single_concept","order":2,"guarantees":["concept: documentation-clarity"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"forbid_cross_concept_reasoning","order":3,"guarantees":["no_cross_concept_dependencies"],"violations":[],"abort_reason":null}
+- Related Spec / Skill: n/a (documentation clarity).
+- Status: in progress
+
 ## 2025-12-24T18:15:02-08:00 — Spec compiler CI enforcement
 - Summary: Add CI job enforcing spec-generation-framework provenance, validation, Codex prompt consumption, and compiler drift detection.
 - Details:

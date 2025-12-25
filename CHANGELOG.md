@@ -14,6 +14,9 @@ Entries use ISO8601 timestamps and newest entries appear first.
 - Added human-friendly glossary and concepts map, linking them from README, HUMAN_START_HERE, and the wiki index. (ledger: 2025-12-24T13:58:44-08:00 — Human-friendly glossary and wiki clarifications)
 - Added context management deep dive doc and linked it from README and the wiki index. (ledger: 2025-12-24T13:58:44-08:00 — Human-friendly glossary and wiki clarifications)
 
+## 2025-12-25T07:47:06+00:00
+- Rewrote the context management rationale with a structured, falsifiable section for reducing context pressure and enabling resumable workflows. (ledger: 2025-12-24T23:46:09-08:00 — Context window benefits documentation)
+
 ## 2025-12-24T21:47:30+00:00
 - Executed `prompt_followup9.md` (added README governance CI bridge and new-repo bootstrap Skill); captured workflow snapshot `rev_009_current`; removed the prompt. (ledger: 2025-12-24T13:36:38-08:00 — Prompt followup execution (README governance))
 
