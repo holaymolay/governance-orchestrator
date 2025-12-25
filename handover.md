@@ -12,6 +12,7 @@
 - Clarifying docs for newcomers live in `docs/humans/glossary.md` and `docs/humans/concepts-map.md`, linked from README, HUMAN_START_HERE, and the wiki index.
 - Context management deep dive is in `docs/humans/context-management.md`, linked from README and the wiki index.
 - README quick start now highlights `HUMAN_START_HERE.md` as the first entrypoint.
+- Spec compiler enforcement CI (`spec-compiler-enforcement` workflow) requires spec-generation-framework provenance, validation, Codex prompt checks, and compiler-version drift detection.
 - UI intent protocol concept is under `concepts/ui-intent-protocol/` with schema, adapter, reference renderer, and PDCA doc; Skill `skills/ui-intent-emit/` added for validated intent emission.
 - Workflow snapshots are stored locally under `ai_workflow_revisions/` (gitignored by default); current baseline `rev_008_current` was captured via `scripts/create-workflow-revision.sh` (see `docs/workflow-revisions.md` for required contents/numbering).
 - Key references: `AGENTS.md`, `docs/agents.md`, `docs/humans/workflow-guide.md`, `docs/context-management.md`, `docs/security.md`, `docs/access-manifest.md`, `docs/skills/skill-library-v1.md`, `specs/skill-library-v1.md`, `scripts/skillctl`, and `skills/README.md`.
@@ -29,6 +30,7 @@
 - Added human-friendly glossary and concepts map, linking them from README, HUMAN_START_HERE, and the wiki index. Skill: none. (ledger: 2025-12-24T13:58:44-08:00 — Human-friendly glossary and wiki clarifications).
 - Added context management deep dive doc and linked it from README and the wiki index. Skill: none. (ledger: 2025-12-24T13:58:44-08:00 — Human-friendly glossary and wiki clarifications).
 - Emphasized the `HUMAN_START_HERE.md` entrypoint in README quick start and cleared the inbox request. Skill: none. (ledger: 2025-12-24T13:58:44-08:00 — Human-friendly glossary and wiki clarifications).
+- Added spec-compiler-enforcement CI workflow requiring spec-generation-framework provenance, validation, Codex prompt consumption checks, and compiler drift detection. Skill: none. (ledger: 2025-12-24T18:15:02-08:00 — Spec compiler CI enforcement).
 - Executed prompt followups 8-9 (README spec-driven governance docs, HUMAN_START_HERE update, README governance CI bridge, new-repo bootstrap Skill) and removed the prompt files. Skill: none. (ledger: 2025-12-24T13:36:38-08:00 — Prompt followup execution (README governance)).
 - Executed prompt followups 5-7 (README rewrite, README lint autofix + quality CI, README rubric + lint guide) and removed the prompt files. Skill: none. (ledger: 2025-12-24T13:23:53-08:00 — README governance followups).
 - Processed `todo-inbox.md` update (queued `prompt_followup9.md`) and confirmed readme-spec-engine repo is unavailable; prompt followups 8-9 are blocked. Skill: none. (ledger: 2025-12-24T13:36:38-08:00 — Prompt followup execution (README governance)).
