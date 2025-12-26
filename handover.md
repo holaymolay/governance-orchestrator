@@ -3,10 +3,11 @@
 **AI-managed file — humans should not edit this directly.** The agent keeps current state and next steps here.
 
 ## Current Focus
-- None (prompt followups completed; queue is clear).
+- None (Design Intent Schema concept delivered; queue is clear).
 
 ## State Snapshot
 - Governance files exist and todos are clear: `todo-inbox.md` is empty; `todo.md` has no pending tasks; `backlog.md` is empty; bugs are empty.
+- Design Intent Schema concept lives in `concepts/design-intent-schema/` with the JSON Schema in `schemas/design-intent.schema.json` and a fail-fast validator in `handlers/intent/validate.py`.
 - README governance docs now declare spec-driven generation, and `README_GOVERNANCE.md` is present.
 - Workflow snapshots are stored locally under `ai_workflow_revisions/`; `rev_009_current` captures the README governance updates (see `docs/workflow-revisions.md`).
 - Clarifying docs for newcomers live in `docs/humans/glossary.md` and `docs/humans/concepts-map.md`, linked from README, HUMAN_START_HERE, and the wiki index.
@@ -30,6 +31,7 @@
 - Added Skill `ui_governance` under `skills/ui-governance/` for UI governance constraints and capability gating.
 
 ## Recent Progress
+- Added Design Intent Schema concept (spec, schema, validator, tests, lifecycle docs). Spec: 193e018f-6875-4276-b503-2af48f6ec37b. Skill: none. Stack: Python. (ledger: 2025-12-26T00:23:48-08:00 — Design Intent Schema concept).
 - Added human-friendly glossary and concepts map, linking them from README, HUMAN_START_HERE, and the wiki index. Skill: none. (ledger: 2025-12-24T13:58:44-08:00 — Human-friendly glossary and wiki clarifications).
 - Added context management deep dive doc and linked it from README and the wiki index. Skill: none. (ledger: 2025-12-24T13:58:44-08:00 — Human-friendly glossary and wiki clarifications).
 - Emphasized the `HUMAN_START_HERE.md` entrypoint in README quick start and cleared the inbox request. Skill: none. (ledger: 2025-12-24T13:58:44-08:00 — Human-friendly glossary and wiki clarifications).

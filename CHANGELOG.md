@@ -4,6 +4,9 @@
 
 Entries use ISO8601 timestamps and newest entries appear first.
 
+## 2025-12-26T00:26:04-08:00
+- Added Design Intent Schema concept (spec, schema, validator, tests, lifecycle docs). Spec: 193e018f-6875-4276-b503-2af48f6ec37b. Stack: Python. (ledger: 2025-12-26T00:23:48-08:00 — Design Intent Schema concept)
+
 ## 2025-12-25T08:03:07+00:00
 - Added beginner-friendly entry points to README and HUMAN_START_HERE and simplified human guides/cheat sheet for quick onboarding. (ledger: 2025-12-24T23:57:00-08:00 — Human docs clarity pass)
 

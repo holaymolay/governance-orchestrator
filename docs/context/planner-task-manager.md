@@ -1,5 +1,25 @@
 # Planner / Task Manager Ledger
 
+## 2025-12-26T00:23:48-08:00 — Design Intent Schema concept
+- Summary: Establish a first-class Design Intent Schema concept with validation, docs, and tests.
+- Details:
+  - Pre-task `todo-inbox.md` sweep: inbox empty.
+  - Domain shift: documentation-clarity -> design-intent-schema.
+  - Clarification Gate: not triggered (request is clear).
+  - Reasoning Skills pipeline (pre-planner) logs:
+    - {"event_type":"reasoning","skill_name":"bind_spec_id","order":1,"guarantees":["spec_id_context: 193e018f-6875-4276-b503-2af48f6ec37b"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"enforce_single_concept","order":2,"guarantees":["concept: design-intent-schema"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"forbid_cross_concept_reasoning","order":3,"guarantees":["no_cross_concept_dependencies"],"violations":[],"abort_reason":null}
+  - Skill search: no applicable Skill (Design Intent Schema).
+  - Progress: added spec `specs/design-intent-schema-v1.md` and concept scaffold under `concepts/design-intent-schema/`.
+  - Progress: added `schemas/design-intent.schema.json` plus validator and fixtures/tests for pass/fail coverage.
+  - Progress: ran `python3 concepts/design-intent-schema/tests/test_validation.py`.
+  - Progress: documented the brand_traits max length in the spec and concept README.
+  - Post-task `todo-inbox.md` sweep: inbox empty.
+- Related Spec / Skill: Spec 193e018f-6875-4276-b503-2af48f6ec37b (Design Intent Schema v1); Skill: none.
+- Related Run: runs/2025-12-26/ab04a342-5f8a-4316-96cc-54a03b882347.jsonl.
+- Status: completed
+
 ## 2025-12-24T23:57:00-08:00 — Human docs clarity pass
 - Summary: Lower the barrier for human-facing docs (README, HUMAN_START_HERE, human guides) without changing AI-targeted materials.
 - Details:
