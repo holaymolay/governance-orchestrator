@@ -18,7 +18,7 @@ This glossary gives newcomers clickable definitions for the framework’s most-u
 - **Clarification Gate**: Pause to resolve ambiguity before planning. See [specs/clarification-gate-v1.md](../../specs/clarification-gate-v1.md).
 - **Reasoning Skills pipeline**: Ordered pre-planner checks for guarantees and aborts. See [skills/reasoning/pipeline.yaml](../../skills/reasoning/pipeline.yaml).
 - **PDCA loop**: Plan/Do/Check/Act cycle applied to every change. See [docs/agents.md](../agents.md#2-workflow-overview-pdca-integration).
-- **Run record**: JSONL audit trail under `runs/YYYY-MM-DD/`. See [runs/run-record.schema.json](../../runs/run-record.schema.json) and [docs/execution-profiles.md](../execution-profiles.md).
+- **Run record**: JSONL audit trail under `runs/YYYY-MM-DD/` (must include the pushed commit hash `push_hash`). See [runs/run-record.schema.json](../../runs/run-record.schema.json) and [docs/execution-profiles.md](../execution-profiles.md).
 
 ## Governance artifacts
 - **Handover**: Current state + next steps in [handover.md](../../handover.md).

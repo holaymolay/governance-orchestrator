@@ -35,7 +35,7 @@ This document distills the Context-Engineering Framework for Coding Agents into 
    - If a single request requires more than two correction attempts, pause execution, restate your understanding to the user, and confirm next steps before coding again.
 6. **Execute** inside the sanctioned sandbox, recording commands/tests.
 7. **Validate** via lint/tests/security scans before presenting results.
-8. **Document** outcomes (`completed.md`, `handover.md`) and archive governance docs if any governance files changed.
+8. **Document** outcomes (`completed.md`, `handover.md`) and archive governance docs if any governance files changed. After pushing, run `scripts/verify-sync.sh` and capture the pushed commit hash (`push_hash`) in the run receipt plus the `completed.md`/`handover.md` entries.
 
 ## 4. Operating Modes
 - **Continuous Mode (default):** Work through all runnable items in `todo.md` in priority order and check off tasks as they complete.

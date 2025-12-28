@@ -1,5 +1,18 @@
 # Planner / Task Manager Ledger
 
+## 2025-12-27T23:51:38-08:00 — Push enforcement hardening
+- Summary: Tighten post-task GitHub push enforcement with checklist updates, sync guard, and local warnings.
+- Details:
+  - Pre-task `todo-inbox.md` sweep: inbox empty.
+  - Domain shift: design-intent-schema -> workflow-governance (post-task push enforcement).
+  - Clarification Gate: not triggered (request is clear).
+  - Reasoning Skills pipeline (pre-planner) logs:
+    - {"event_type":"reasoning","skill_name":"bind_spec_id","order":1,"guarantees":["spec_id_context: none (push enforcement hardening)"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"enforce_single_concept","order":2,"guarantees":["concept: workflow-governance"],"violations":[],"abort_reason":null}
+    - {"event_type":"reasoning","skill_name":"forbid_cross_concept_reasoning","order":3,"guarantees":["no_cross_concept_dependencies"],"violations":[],"abort_reason":null}
+  - Skill search: no applicable Skill (workflow governance / push enforcement).
+  - Plan: 3-step plan recorded via Planner tool (assess current rules; implement script + docs; run audit/snapshot/logs).
+
 ## 2025-12-26T00:23:48-08:00 — Design Intent Schema concept
 - Summary: Establish a first-class Design Intent Schema concept with validation, docs, and tests.
 - Details:

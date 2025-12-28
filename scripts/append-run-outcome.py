@@ -15,6 +15,7 @@ REQUIRED_FIELDS = [
     "outcome",
     "fix_loop_count",
     "synchronizations_used",
+    "push_hash",
 ]
 ALIASES = {
     "commands": "commands_executed",

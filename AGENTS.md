@@ -34,7 +34,8 @@ Commit history is thin, so keep messages imperative and scoped to one change set
 
 ### Repository Hygiene
 - Sync local changes with `origin/master` frequently. After finishing a scoped task—or when notable progress lands—commit, pull/rebase if needed, and push so GitHub always mirrors the current workspace. If a push fails, resolve it immediately rather than leaving work only on the workstation.
-- Treat every task cycle as incomplete until its commits are pushed to GitHub; if GitHub access is unavailable or a push cannot be completed, stop accepting new work and inform the user that no further tasks will be attempted until the repository is updated (by you or the user) and confirmed in sync.
+- End-of-task enforcement: run `scripts/verify-sync.sh` before marking work complete. It fails on dirty trees, missing upstreams, or branches that are ahead/behind/diverged. Do not close a task until it passes, the branch is pushed, and the pushed commit hash is captured in the run receipt plus `completed.md`/`handover.md`.
+- Optional nag: symlink or copy `scripts/git-hooks/post-commit-push-check.sh` into `.git/hooks/post-commit` to warn immediately when the branch is ahead of origin (advisory; does not block commits).
 - Reminder: push to GitHub regularly so task cycles do not stall without mirrored commits.
 - Reminder: update documentation whenever framework changes land so guidance stays in sync.
 
@@ -122,8 +123,8 @@ These instructions define the boundaries and expectations for maintaining projec
   - Remove items from `todo-inbox.md` once moved.
 - Todo formatting: use `- [ ] Task summary` in imperative voice with concise, testable wording; include brief context inline when helpful.
 - Completion: when a todo is finished, move it to `completed.md` (use `- [x]`) and remove it from `todo.md`.
-- **Always record every delivered change in `completed.md` before yielding a response to the user**, and add a timestamped entry to `CHANGELOG.md` for each completed task (see `CHANGELOG.md` for the format).
-- Run receipts: every task appends JSONL records under `runs/YYYY-MM-DD/<run-id>.jsonl` (schema in `runs/run-record.schema.json`); use `scripts/create-run-record.py` to create and `scripts/append-run-outcome.py` to append final outcomes.
+- **Always record every delivered change in `completed.md` before yielding a response to the user**, and add a timestamped entry to `CHANGELOG.md` for each completed task (see `CHANGELOG.md` for the format). Include the pushed commit hash alongside each completion/handover line item.
+- Run receipts: every task appends JSONL records under `runs/YYYY-MM-DD/<run-id>.jsonl` (schema in `runs/run-record.schema.json`); use `scripts/create-run-record.py` to create and `scripts/append-run-outcome.py` to append final outcomes. Receipts must include the pushed commit hash (`push_hash`); a task is not done until the branch is pushed and the hash is recorded.
 - Keep `handover.md` up to date with current focus, recent progress, next steps, and pending items.
 - Multi-attempt clarification rule: If a user request takes more than two implementation attempts (i.e., two rounds of “please fix” on the same ask), pause coding, restate your understanding of the requirement, and ask any clarifying questions before continuing. Log the clarification in the plan/ledger so reviewers see the checkpoint.
 - Housekeeping fast-path: When the user requests routine maintenance actions (for example, `git push` or status checks), execute immediately without extra deliberation, as long as it remains within security/approval rules.

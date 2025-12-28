@@ -137,6 +137,12 @@ Operating modes:
 - Use ISO8601 timestamps and keep newest entries at the top for easy scanning.
 - Reference the matching entry ID in `completed.md` and `handover.md` so reviewers can cross-check context quickly.
 
+## 4.7 Task Wrap-Up (GitHub push enforcement)
+- Run `scripts/verify-sync.sh` before declaring a task done; it fails on dirty trees, missing upstreams, or branches that are ahead/behind/diverged. Fix the state and push before proceeding.
+- A task is incomplete until the branch is pushed and the pushed commit hash (`push_hash`) is recorded in the run receipt, `completed.md`, and `handover.md` entries.
+- Run receipts use `runs/run-record.schema.json` and must include `push_hash`; use `scripts/create-run-record.py` / `scripts/append-run-outcome.py` after the push to capture it.
+- Optional nag: symlink or copy `scripts/git-hooks/post-commit-push-check.sh` into `.git/hooks/post-commit` (or set `git config alias.pushcheck '!bash scripts/verify-sync.sh'`) to warn immediately when ahead of origin without blocking commits.
+
 ## 5. Validation Layer
 - Run static analysis (ESLint for JS/TS, Ruff for Python) before presenting results.
 - Maintain unit test coverage ≥ 80 % across touched modules; document deltas when exceptions apply.

@@ -13,6 +13,7 @@
     "outcome": { "type": "string", "enum": ["pass", "fail"] },
     "fix_loop_count": { "type": "integer", "minimum": 0 },
     "synchronizations_used": { "type": "array", "items": { "type": "string" } },
+    "push_hash": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" },
     "execution_profile": { "type": "string", "enum": ["SAFE", "FAST"] },
     "fast_mode_scope": { "type": "string", "minLength": 1 }
   },
@@ -26,7 +27,8 @@
     "commands_executed",
     "outcome",
     "fix_loop_count",
-    "synchronizations_used"
+    "synchronizations_used",
+    "push_hash"
   ],
   "additionalProperties": false
 }
