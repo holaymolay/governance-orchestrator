@@ -1,4 +1,6 @@
-# Context-Engineering Framework for Coding Agents
+# CEF Governance Orchestrator
+Part of the Context Engineering Framework (CEF). Umbrella repo: [context-engineering-framework](https://github.com/holaymolay/cef-governance-orchestrator).
+
 A governance and context-engineering framework that turns human requests into
 repeatable, auditable agent execution.
 It replaces ad-hoc prompting with explicit specs, Skills, and enforcement.
