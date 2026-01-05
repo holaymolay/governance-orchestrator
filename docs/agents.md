@@ -184,7 +184,7 @@ Next Action: <who, when>
 - Align with the security playbook for dependency hygiene, incident response, and monitoring of automated changes.
 
 - Pre-governance gate: run umbrella `prompt-debugger/cli.py` on any intake (task-inbox/chat) and attach the Prompt Debug Report to the plan.
-- Lifecycle gate: run `scripts/enforce-lifecycle.py` to ensure `todo.md` has a task plan and required artifacts exist before execution.
+- Lifecycle gate (with template and logging): `scripts/enforce-lifecycle.py --todo todo.md --gap-ledger gap-ledger.json --prompt-report /tmp/debug_report.yaml --require-ceres-todo --log-helper ../scripts/log_event.py --task-id <id>` to ensure todo plan exists, artifacts present, template intact, and gate outcomes logged.
 - Attention-bounded questions: one bounded question per turn, tied to Gap ID with rationale; non-compliant prompts are rejected.
 - Gap resolution requires evidence, user answer, or explicit assumption with risk/expiry; otherwise mark as unresolved.
 
