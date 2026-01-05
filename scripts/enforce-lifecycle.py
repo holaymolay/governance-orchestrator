@@ -62,6 +62,7 @@ def main() -> None:
     parser.add_argument("--gap-ledger", type=Path, help="Optional path to gap ledger file")
     parser.add_argument("--prompt-report", type=Path, help="Optional path to prompt debug report")
     parser.add_argument("--require-ceres-todo", action="store_true", help="Fail if todo.md does not look like CERES template")
+    parser.add_argument("--require-gap-ledger", action="store_true", help="Fail if gap ledger is missing or empty")
     parser.add_argument("--task-id", help="Optional task identifier for logging context")
     parser.add_argument(
         "--log-helper",
@@ -83,6 +84,15 @@ def main() -> None:
 
     if args.gap_ledger and not args.gap_ledger.exists():
         failures.append(f"Gap ledger missing: {args.gap_ledger}")
+
+    if args.require_gap_ledger:
+        if not args.gap_ledger:
+            failures.append("Gap ledger path not provided while --require-gap-ledger is set")
+        else:
+            if not args.gap_ledger.exists():
+                failures.append(f"Gap ledger missing: {args.gap_ledger}")
+            elif not args.gap_ledger.read_text().strip():
+                failures.append(f"Gap ledger is empty: {args.gap_ledger}")
 
     if args.prompt_report and not args.prompt_report.exists():
         failures.append(f"Prompt debug report missing: {args.prompt_report}")
