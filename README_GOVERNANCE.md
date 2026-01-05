@@ -45,3 +45,8 @@ Located in the umbrella repo `schemas/`: Objective Contract, Gap Ledger, Task Pl
 - Run SEA first; then run inference to produce Gap Ledger before planning.
 - Use lifecycle gate with `--require-gap-ledger --validate-gap-ledger` to block execution when Gap Ledger is missing/empty.
 - Interrogation is one-question-at-a-time; record evidence/assumptions in the Gap Ledger.
+
+## Interrogator / Resolver behavior
+- Interrogator: one question at a time, tied to Gap ID and rationale; no compound or hypothetical questions; must update Gap Ledger status with answer/evidence or explicit assumption.
+- Resolver: attempt `answerable_by_system` gaps using repo search/tests/static inspection; attach evidence links; unresolved blocking gaps stop planning.
+- Gap Ledger: use `scripts/validate-gap-ledger.py` to ensure resolved gaps carry evidence or explicit assumptions.

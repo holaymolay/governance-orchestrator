@@ -1,4 +1,6 @@
 
+**Interrogator/Resolver:** one question at a time tied to Gap ID+rationale; resolver tackles `answerable_by_system` gaps with repo search/tests/static inspection; record evidence/assumptions in the Gap Ledger and validate with `scripts/validate-gap-ledger.py`. Blocking unresolved gaps stop planning.
+
 **Inference enforcement:** run SEA first, then produce Gap Ledger before planning; use lifecycle gate with `--require-gap-ledger --validate-gap-ledger` to block execution if missing/empty; interrogate one question at a time and record evidence/assumptions.
 **Hub entry:** Load CERES via the umbrella `PROMPTLOADER.md` + `CONSTITUTION.md` and use hub todo templates (`scripts/init-todo-files.sh`) when bootstrapping a project. This component stays independent and is invoked via the hub clone/run scripts.
 
