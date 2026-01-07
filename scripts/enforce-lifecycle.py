@@ -10,10 +10,17 @@ Enforces:
 """
 import argparse
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
-from typing import Dict
+from typing import Dict, List
+
+MAX_TODO_LINE_LENGTH = 240
+EXECUTE_PROMPT_PATTERN = re.compile(r"Execute prompt:\s*([^\s]+)")
+FROM_PROMPT_PATTERN = re.compile(r"From prompt\s+([^\s:]+)(?:\s*:\s*(.+))?")
+
+
 
 
 def has_unchecked_tasks(todo_path: Path) -> bool:
@@ -57,6 +64,113 @@ def validate_gap_ledger(path: Path) -> str:
     if result.returncode != 0:
         raise RuntimeError(result.stderr.strip() or "Gap ledger validation failed")
     return result.stderr.strip()  # warnings, if any
+
+
+def is_prompt_path(value: str) -> bool:
+    return value.startswith("prompts/prompt-") and value.endswith(".md")
+
+
+def read_prompt_classification(path: Path) -> str | None:
+    classification = None
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.startswith("Classification:"):
+            classification = line.split(":", 1)[1].strip().lower()
+            break
+    if classification in {"atomic", "decomposable"}:
+        return classification
+    return None
+
+
+def outcome_from_next_line(lines: List[str], index: int) -> bool:
+    if index + 1 >= len(lines):
+        return False
+    next_line = lines[index + 1].strip()
+    if not next_line.lower().startswith("outcome:"):
+        return False
+    return bool(next_line.split(":", 1)[1].strip())
+
+
+def validate_prompt_artifacts(todo_path: Path) -> List[str]:
+    failures: List[str] = []
+    if not todo_path.exists():
+        return failures
+
+    lines = todo_path.read_text(encoding="utf-8").splitlines()
+    for idx, line in enumerate(lines, start=1):
+        if len(line) > MAX_TODO_LINE_LENGTH:
+            failures.append(
+                f"todo.md line {idx} exceeds {MAX_TODO_LINE_LENGTH} chars; long prompts must be externalized"
+            )
+
+    references: List[dict] = []
+    for idx, line in enumerate(lines, start=1):
+        stripped = line.strip()
+        if not stripped.startswith("- ["):
+            continue
+
+        if "Execute prompt:" in stripped:
+            match = EXECUTE_PROMPT_PATTERN.search(stripped)
+            if not match:
+                failures.append(f"todo.md line {idx} has Execute prompt without a path")
+            else:
+                path_value = match.group(1)
+                if not is_prompt_path(path_value):
+                    failures.append(f"todo.md line {idx} must reference prompts/prompt-*.md")
+                tail = stripped[match.end():].strip()
+                references.append(
+                    {
+                        "line": idx,
+                        "path": path_value,
+                        "outcome": bool(tail) or outcome_from_next_line(lines, idx - 1),
+                    }
+                )
+
+        if "From prompt" in stripped:
+            match = FROM_PROMPT_PATTERN.search(stripped)
+            if not match:
+                failures.append(f"todo.md line {idx} has From prompt without a path")
+            else:
+                path_value = match.group(1)
+                if not is_prompt_path(path_value):
+                    failures.append(f"todo.md line {idx} must reference prompts/prompt-*.md")
+                outcome_inline = bool(match.group(2) and match.group(2).strip())
+                references.append(
+                    {
+                        "line": idx,
+                        "path": path_value,
+                        "outcome": outcome_inline or outcome_from_next_line(lines, idx - 1),
+                    }
+                )
+
+    grouped: dict[str, list[dict]] = {}
+    for ref in references:
+        path_value = ref.get("path")
+        if not path_value:
+            continue
+        grouped.setdefault(path_value, []).append(ref)
+
+    hub_root = todo_path.resolve().parent
+    for path_value, refs in grouped.items():
+        prompt_path = (hub_root / path_value).resolve()
+        if not prompt_path.exists():
+            failures.append(f"Prompt file not found: {path_value}")
+            continue
+        classification = read_prompt_classification(prompt_path)
+        if not classification:
+            failures.append(f"Prompt file missing Classification (atomic|decomposable): {path_value}")
+            continue
+        if classification == "atomic" and len(refs) != 1:
+            failures.append(
+                f"Prompt {path_value} is atomic but referenced by {len(refs)} todo entries"
+            )
+        if classification == "decomposable":
+            for ref in refs:
+                if not ref.get("outcome"):
+                    failures.append(
+                        f"Prompt {path_value} is decomposable; todo line {ref['line']} must include an outcome"
+                    )
+
+    return failures
 
 
 def main() -> None:
@@ -116,6 +230,8 @@ def main() -> None:
         for section in required_sections:
             if not any(line.strip() == section for line in contents):
                 failures.append(f"todo.md missing required section: {section}")
+
+    failures.extend(validate_prompt_artifacts(args.todo))
 
     if failures:
         sys.stderr.write("Lifecycle gate failed:\n" + "\n".join(f"- {f}" for f in failures) + "\n")
